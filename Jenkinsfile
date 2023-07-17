@@ -1,7 +1,6 @@
 pipeline {
     agent any
     stages {
-        def buildNumber = env.BUILD_NUMBER
         stage('Checkout') {
             steps {
                 checkout scm
@@ -9,13 +8,13 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t davitmadoyan/trg-task:${buildNumber} .'
+                sh 'docker build -t davitmadoyan/trg-task:${env.BUILD_NUMBER} .'
             }
         }
         stage('Login and Push') {
             steps {
                 sh 'echo "dckr_pat_m0enQ8oTaOTT5UEFJBmkfJ2Wuj4" | docker login -u "davitmadoyan" --password-stdin'
-                sh 'docker push davitmadoyan/trg-task:${buildNumber}'
+                sh 'docker push davitmadoyan/trg-task:${env.BUILD_NUMBER}'
             }
         }
     }
