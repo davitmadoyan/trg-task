@@ -1,7 +1,7 @@
 pipeline {
-    def buildNumber = env.BUILD_NUMBER
     agent any
     stages {
+        def buildNumber = env.BUILD_NUMBER
         stage('Checkout') {
             steps {
                 checkout scm
