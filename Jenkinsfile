@@ -1,4 +1,5 @@
 pipeline {
+    def buildNumber = env.BUILD_NUMBER
     agent any
     stages {
         stage('Checkout') {
