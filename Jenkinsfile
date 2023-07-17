@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t trg-task:1.0.0 .'
+                sh 'docker build -t davitmadoyan/trg-task:1.0.0 .'
             }
         }
         stage('Login and Push') {
