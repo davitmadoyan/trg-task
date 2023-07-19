@@ -23,7 +23,7 @@ pipeline {
                 sh 'pwd'
                 sh 'ls -la'
                 sh 'cd temp/app-manifests/'
-                sh 'sed -i "s/trg-task:.*$/trg-task:1.0.4/g" deployment.yml'
+                sh 'sed -i "s/trg-task:.*$/trg-task:1.0.4/g" ./deployment.yml'
                 sh 'git add .'
                 sh 'git commit -m "updated image version'
                 sh 'git push'
