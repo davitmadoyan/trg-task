@@ -8,13 +8,23 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t davitmadoyan/trg-task:1.0.1 .'
+                sh 'docker build -t davitmadoyan/trg-task:1.0.4 .'
             }
         }
         stage('Login and Push') {
             steps {
                 sh 'echo "dckr_pat_m0enQ8oTaOTT5UEFJBmkfJ2Wuj4" | docker login -u "davitmadoyan" --password-stdin'
-                sh 'docker push davitmadoyan/trg-task:1.0.1'
+                sh 'docker push davitmadoyan/trg-task:1.0.4'
+            }
+        }
+        stage('Push changes') {
+            steps {
+                sh 'git clone https://github.com/davitmadoyan/trg-argocd-app-config.git'
+                sh 'cd trg-argocd-app-config/app-manifests'
+                sh 'sed -i "s/trg-task:.*$/trg-task:1.0.4/g" deployment.yml'
+                sh 'git add .'
+                sh 'git commit -m "updated image version'
+                sh 'git push'
             }
         }
     }
