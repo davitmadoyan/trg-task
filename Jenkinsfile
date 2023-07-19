@@ -20,6 +20,8 @@ pipeline {
         stage('Push changes') {
             steps {
                 sh 'git clone https://github.com/davitmadoyan/trg-argocd-app-config.git'
+                sh 'pwd'
+                sh 'ls -la'
                 sh 'cd trg-argocd-app-config/app-manifests'
                 sh 'sed -i "s/trg-task:.*$/trg-task:1.0.4/g" deployment.yml'
                 sh 'git add .'
