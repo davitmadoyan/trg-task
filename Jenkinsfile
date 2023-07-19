@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    IMAGE_VERSION = '1.0.8'
+    IMAGE_VERSION = '1.0.9'
   }
   stages {
     stage('Checkout') {
