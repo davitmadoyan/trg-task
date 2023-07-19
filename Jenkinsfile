@@ -22,7 +22,7 @@ pipeline {
                 sh 'rm -rf trg-argocd-app-config'
                 sh 'git clone https://github.com/davitmadoyan/trg-argocd-app-config.git'
                 sh 'sed -i "s/trg-task:.*$/trg-task:1.0.7/g" trg-argocd-app-config/app-manifests/deployment.yml'
-                sh 'cd trg-argocd-app-config; git add .; git commit -m "updated image version"; git push https://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@github.com/davitmadoyan/trg-argocd-app-config.git'
+                sh 'cd trg-argocd-app-config; git add .; git commit -m "updated image version"; git push https://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@github.com/davitmadoyan/trg-argocd-app-config.git'
             }
         }
     }
