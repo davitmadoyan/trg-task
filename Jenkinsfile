@@ -19,11 +19,9 @@ pipeline {
         }
         stage('Push changes') {
             steps {
-                sh 'git config --global user.email "dmadoyan@example.com"'
-                sh 'git config --global user.name dmadoyan'
                 sh 'git clone https://github.com/davitmadoyan/trg-argocd-app-config.git'
                 sh 'sed -i "s/trg-task:.*$/trg-task:1.0.5/g" trg-argocd-app-config/app-manifests/deployment.yml'
-                sh 'cd trg-argocd-app-config; git add .; git commit -m "updated image version"; git push https://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@github.com/davitmadoyan/trg-argocd-app-config.git'
+                sh 'cd trg-argocd-app-config; git add .; git commit -m "updated image version"; git push https://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@github.com/davitmadoyan/trg-argocd-app-config.git'
                 sh 'rm -rf trg-argocd-app-config'
             }
         }
