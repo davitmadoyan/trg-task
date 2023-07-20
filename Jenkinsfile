@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    IMAGE_VERSION = '1.0.10'
+    IMAGE_VERSION = '1.0.11'
   }
   stages {
     stage('Checkout') {
@@ -28,7 +28,7 @@ pipeline {
         }
       }
     }
-    stage('Push changes') {
+    stage('Update image version in ArgoCD repo') {
       steps {
         script {
           withCredentials([
