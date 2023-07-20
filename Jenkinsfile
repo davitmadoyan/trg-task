@@ -1,7 +1,7 @@
 pipeline {
   agent any
   environment {
-    IMAGE_VERSION = '1.0.9'
+    IMAGE_VERSION = '1.0.10'
   }
   stages {
     stage('Checkout') {
@@ -16,8 +16,16 @@ pipeline {
     }
     stage('Login and Push') {
       steps {
-        sh 'echo "dckr_pat_m0enQ8oTaOTT5UEFJBmkfJ2Wuj4" | docker login -u "davitmadoyan" --password-stdin'
-        sh 'docker push davitmadoyan/trg-task:$IMAGE_VERSION'
+        script {
+          withCredentials([
+            string(
+              credentialsId: 'dockerhub-token',
+              variable: 'DOCKERHUB_TOKEN')
+          ]) {
+            sh 'echo $DOCKERHUB_TOKEN | docker login -u "davitmadoyan" --password-stdin'
+            sh 'docker push davitmadoyan/trg-task:$IMAGE_VERSION'
+          }
+        }
       }
     }
     stage('Push changes') {
